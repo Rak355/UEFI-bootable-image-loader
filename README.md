@@ -17,13 +17,13 @@ This is a simple UEFI bootable program which prints an image on the display scre
 #How to build:
 ##Getting edk2
 1. Download the EDK II source and build tools.
-Perform >git clone https://github.com/tianocore/edk2.git
+At the console>git clone https://github.com/tianocore/edk2.git
 or Download the latest .zip UDK2017 Download release (or Latest UDK release).
 
 ##Building the efi application.
 2. Move to the base directory -->/src/edk2/
 and run the edksetup by running following command on the console.
-At the command promt>$. edksetup.sh BaseTools
+At the console>$. edksetup.sh BaseTools
 3. Clone the source of this repository/project to another folder.
 4. Open the file /src/edk2/DuetPkg/DuetPkgX64.dsc and add our application to the the [Components] section and before the [BuildOptions] section.
 
@@ -32,7 +32,7 @@ Just add the full path of "main.inf" file betweem [Components] section and the [
 At the command promt>$ build -a X64 -p DuetPkg/DuetPkgX64.dsc
 It will take a while to build.
 6. To create the disk image
->$ make set_disk
+At the console>$ make set_disk
   1. on the first entry, enter :n, to create a new partition.
   2. on the second entry, enter :1, for one partition.
   3. on the third entry, enter :2048, this is also the default sector size.
@@ -43,7 +43,7 @@ It will take a while to build.
   The disk will be created.
 
 7. To prepare the disk
->$ make prep_disk
+At the console>$ make prep_disk
 This will create /efi/boot and /img directories and also copy the .efi application and the image file to the disk.
 8. To run the application on the qemu VM.
->$ make run-qemu.
+At the console>$ make run-qemu.
