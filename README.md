@@ -46,5 +46,6 @@ This will create /efi/boot and /img directories and also copy the .efi applicati
 7. To run the application on the qemu VM.
 At the console>$ make run-qemu.
 
+These are some snapshots of the program.
 ![snapshot](https://i.imgur.com/AZzRCHQ.png)
 ![snapshot](https://i.imgur.com/6qNdm8E.png)
