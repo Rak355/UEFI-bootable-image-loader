@@ -45,3 +45,6 @@ At the console>$ make prep_disk
 This will create /efi/boot and /img directories and also copy the .efi application and the image file to the disk.
 7. To run the application on the qemu VM.
 At the console>$ make run-qemu.
+
+![snapshot](https://i.imgur.com/AZzRCHQ.png)
+![snapshot](https://i.imgur.com/6qNdm8E.png)
