@@ -33,6 +33,7 @@ At the command promt>$ build -a X64 -p DuetPkg/DuetPkgX64.dsc
 It will take a while to build.
 6. To create the disk image
 At the console>$ make set_disk
+
   1. on the first entry, enter :n, to create a new partition.
   2. on the second entry, enter :1, for one partition.
   3. on the third entry, enter :2048, this is also the default sector size.
