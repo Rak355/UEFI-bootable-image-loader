@@ -1,45 +1,49 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+#UEFI Bootable image loader
+This is a simple UEFI bootable program which prints an image on the display screen on boot by using the GOP protocol provided by the UEFI firmware.
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+##Note
+1. The image must be .bmp image.
+2. The image must be mirror-inverted to print it upright and correctly. A sample of the mirror-inverted image is the "image.bmp" file. It is also the default image file.
+3. The resolution of the image must be 2560x1440 as the default graphics mode has the same resolution. This could be changed if a different graphics mode is used.
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+#Dependencies:
+1. Linux environment or subsystem of linux for other platforms.
+2. make.
+3. Qemu (virtual machine).
+4. UEFI firmware for qemu.[Provided in the OVMF folder]
+5. gdisk.
+6. edk2.
 
----
+#How to build:
+##Getting edk2
+1. Download the EDK II source and build tools.
+Perform >git clone https://github.com/tianocore/edk2.git
+or Download the latest .zip UDK2017 Download release (or Latest UDK release).
 
-## Edit a file
+##Building the efi application.
+2. Move to the base directory -->/src/edk2/
+and run the edksetup by running following command on the console.
+At the command promt>$. edksetup.sh BaseTools
+3. Clone the source of this repository/project to another folder.
+4. Open the file /src/edk2/DuetPkg/DuetPkgX64.dsc and add our application to the the [Components] section and before the [BuildOptions] section.
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+Just add the full path of "main.inf" file betweem [Components] section and the [BuildOptions] section.
+5. To build the UEFI application:
+At the command promt>$ build -a X64 -p DuetPkg/DuetPkgX64.dsc
+It will take a while to build.
+6. To create the disk image
+>$ make set_disk
+  1. on the first entry, enter :n, to create a new partition.
+  2. on the second entry, enter :1, for one partition.
+  3. on the third entry, enter :2048, this is also the default sector size.
+  4. on the fourth entry, enter :1048542, for the last setor.
+  5. on the fifth entry, enter :ef00, this implies a efi partition.
+  6. on the sixth entry, enter :w, this marks the changes to be written on the disk.
+  7. on the seventh entry, enter :Y, to perform the write operation.
+  The disk will be created.
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
-
----
-
-## Create a file
-
-Next, you’ll add a new file to this repository.
-
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
-
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
-
----
-
-## Clone a repository
-
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+7. To prepare the disk
+>$ make prep_disk
+This will create /efi/boot and /img directories and also copy the .efi application and the image file to the disk.
+8. To run the application on the qemu VM.
+>$ make run-qemu.
