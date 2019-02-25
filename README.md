@@ -31,13 +31,13 @@ At the command promt>$ build -a X64 -p DuetPkg/DuetPkgX64.dsc
 It will take a while to build.
 5. To create the disk image
 At the console>$ make set_disk
-- 1. on the first entry, enter :n, to create a new partition.
-  2. on the second entry, enter :1, for one partition.
-  3. on the third entry, enter :2048, this is also the default sector size.
-  4. on the fourth entry, enter :1048542, for the last setor.
-  5. on the fifth entry, enter :ef00, this implies a efi partition.
-  6. on the sixth entry, enter :w, this marks the changes to be written on the disk.
-  7. on the seventh entry, enter :Y, to perform the write operation.
+  - on the first entry, enter :n, to create a new partition.
+  - on the second entry, enter :1, for one partition.
+  - on the third entry, enter :2048, this is also the default sector size.
+  - on the fourth entry, enter :1048542, for the last setor.
+  - on the fifth entry, enter :ef00, this implies a efi partition.
+  - on the sixth entry, enter :w, this marks the changes to be written on the disk.
+  - on the seventh entry, enter :Y, to perform the write operation.
   The disk will be created.
 
 6. To prepare the disk
