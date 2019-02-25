@@ -25,9 +25,7 @@ or Download the latest .zip UDK2017 Download release (or Latest UDK release).
 and run the edksetup by running following command on the console.
 At the console>$. edksetup.sh BaseTools
 3. Clone the source of this repository/project to another folder.
-4. Open the file /src/edk2/DuetPkg/DuetPkgX64.dsc and add our application to the the [Components] section and before the [BuildOptions] section.
-
-Just add the full path of "main.inf" file betweem [Components] section and the [BuildOptions] section.
+4. Open the file /src/edk2/DuetPkg/DuetPkgX64.dsc and add our application to the the [Components] section and before the [BuildOptions] section.Just add the full path of "main.inf" file betweem [Components] section and the [BuildOptions] section.
 5. To build the UEFI application:
 At the command promt>$ build -a X64 -p DuetPkg/DuetPkgX64.dsc
 It will take a while to build.
