@@ -1,12 +1,12 @@
-#UEFI Bootable image loader
+# UEFI Bootable image loader
 This is a simple UEFI bootable program which prints an image on the display screen on boot by using the GOP protocol provided by the UEFI firmware.
 
-##Note
+## Note
 1. The image must be .bmp image.
 2. The image must be mirror-inverted to print it upright and correctly. A sample of the mirror-inverted image is the "image.bmp" file. It is also the default image file.
 3. The resolution of the image must be 2560x1440 as the default graphics mode has the same resolution. This could be changed if a different graphics mode is used.
 
-#Dependencies:
+# Dependencies:
 1. Linux environment or subsystem of linux for other platforms.
 2. make.
 3. Qemu (virtual machine).
@@ -14,13 +14,13 @@ This is a simple UEFI bootable program which prints an image on the display scre
 5. gdisk.
 6. edk2.
 
-#How to build:
-##Getting edk2
+# How to build:
+## Getting edk2
 1. Download the EDK II source and build tools.
 At the console>git clone https://github.com/tianocore/edk2.git
 or Download the latest .zip UDK2017 Download release (or Latest UDK release).
 
-##Building the efi application.
+## Building the efi application.
 1. Move to the base directory -->/src/edk2/
 and run the edksetup by running following command on the console.
 At the console>$. edksetup.sh BaseTools
@@ -33,11 +33,11 @@ It will take a while to build.
 At the console>$ make set_disk
   - on the first entry, enter :n, to create a new partition.
   - on the second entry, enter :1, for one partition.
-  - on the third entry, enter :2048, this is also the default sector size.
-  - on the fourth entry, enter :1048542, for the last setor.
-  - on the fifth entry, enter :ef00, this implies a efi partition.
+  - on the third entry, enter :set default sector size.
+  - on the fourth entry, enter :set the default last setor.
+  - on the fifth entry, enter :ef00, this implies an efi partition.
   - on the sixth entry, enter :w, this marks the changes to be written on the disk.
-  - on the seventh entry, enter :Y, to perform the write operation.
+  - on the seventh entry, enter :Y, to perform the final write operation.
   The disk will be created.
 
 6. To prepare the disk
