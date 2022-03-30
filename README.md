@@ -1,13 +1,13 @@
 # UEFI Bootable image loader
-This is a simple UEFI bootable program which prints an image on the display screen on boot by using the GOP protocol provided by the UEFI firmware.
+This is a simple UEFI-bootable program which prints an image of specific size on screen using the GOP protocol which is provided by the UEFI firmware. This project was done as a hobby.
 
 ## Note
-1. The image must be .bmp image.
-2. The image must be mirror-inverted to print it upright and correctly. A sample of the mirror-inverted image is the "image.bmp" file. It is also the default image file.
-3. The resolution of the image must be 2560x1440 as the default graphics mode has the same resolution. This could be changed if a different graphics mode is used.
+1. The image must be `.bmp` image.
+2. The image must be <em>mirror-inverted</em> to print it upright and correctly. A sample of the mirror-inverted image is the `image.bmp` (provided in the source). It is also the default image file that is used by the program.
+3. The resolution of the image must be <em>2560x1440</em> as the default graphics mode has the same resolution. This could be changed if a different graphics mode is used.
 
-# Dependencies:
-1. Linux environment or subsystem of linux for other platforms.
+# Tools:
+1. Unix environment.
 2. make.
 3. Qemu (virtual machine).
 4. UEFI firmware for qemu.[Provided in the OVMF folder]
@@ -16,21 +16,22 @@ This is a simple UEFI bootable program which prints an image on the display scre
 
 # How to build:
 ## Getting edk2
-1. Download the EDK II source and build tools.
-At the console>git clone https://github.com/tianocore/edk2.git
-or Download the latest .zip UDK2017 Download release (or Latest UDK release).
+1. Download the EDK II source and build tools.<br>
+`$ git clone https://github.com/tianocore/edk2.git`, or<br>
+2. Download the latest .zip UDK2017 Download release (or Latest UDK release).
 
 ## Building the efi application.
-1. Move to the base directory -->/src/edk2/
-and run the edksetup by running following command on the console.
-At the console>$. edksetup.sh BaseTools
+1. Move to the base directory <br>
+`$ cd /src/edk2/`
+and run the edksetup by running following command on the console.<br>
+`$ edksetup.sh BaseTools`
 2. Clone the source of this repository/project to another folder.
-3. Open the file /src/edk2/DuetPkg/DuetPkgX64.dsc and add our application to the the [Components] section and before the [BuildOptions] section.Just add the full path of "main.inf" file betweem [Components] section and the [BuildOptions] section.
-4. To build the UEFI application:
-At the command promt>$ build -a X64 -p DuetPkg/DuetPkgX64.dsc
+3. Open the file `/src/edk2/DuetPkg/DuetPkgX64.dsc` and add our application to the the `[Components]` section and before the `[BuildOptions]` section.Just add the full path of `main.inf` file betweem `[Components]` section and the `[BuildOptions]` section.
+4. To build the UEFI application:<br>
+`$ build -a X64 -p DuetPkg/DuetPkgX64.dsc`
 It will take a while to build.
-5. To create the disk image
-At the console>$ make set_disk
+5. To create the disk image<br>
+`$ make set_disk`
   - on the first entry, enter :n, to create a new partition.
   - on the second entry, enter :1, for one partition.
   - on the third entry, enter :set default sector size.
@@ -40,11 +41,11 @@ At the console>$ make set_disk
   - on the seventh entry, enter :Y, to perform the final write operation.
   The disk will be created.
 
-6. To prepare the disk
-At the console>$ make prep_disk
-This will create /efi/boot and /img directories and also copy the .efi application and the image file to the disk.
-7. To run the application on the qemu VM.
-At the console>$ make run-qemu.
+6. To prepare the disk<br>
+`$ make prep_disk`
+This will create `/efi/boot` and `/img` directories and also copy the `.efi` application and the image file to the disk.
+7. To run the application on the qemu VM.<br>
+`$ make run-qemu`.
 
 These are some snapshots of the program.
 ![snapshot](https://i.imgur.com/AZzRCHQ.png)
