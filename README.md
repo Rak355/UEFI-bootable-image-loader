@@ -20,6 +20,10 @@ This is a simple UEFI-bootable program which prints an image of specific size on
 `$ git clone https://github.com/tianocore/edk2.git`, or<br>
 2. Download the latest .zip UDK2017 Download release (or Latest UDK release).
 
+## Install dependencies:
+### For Debian based Linux
+`$ sudo apt-get install build-essential uuid-dev iasl git gcc-5 nasm python3-distutils`
+
 ## Building the efi application.
 1. Move to the base directory <br>
 `$ cd edk2/`
