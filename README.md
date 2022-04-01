@@ -27,7 +27,7 @@ This is a simple UEFI-bootable program which prints an image of specific size on
 ## Building the edk2 tree and efi application.
 1. Follow instructions at https://github.com/tianocore/tianocore.github.io/wiki/Getting-Started-with-EDK-II
 and https://github.com/tianocore/tianocore.github.io/wiki/Common-instructions
-2. Open the file `edk2/DuetPkg/DuetPkgX64.dsc` and add our application to the the `[Components]` section and before the `[BuildOptions]` section.Just add the full path of `main.inf` file betweem `[Components]` section and the `[BuildOptions]` section.
+2. Open the file `edk2/DuetPkg/DuetPkgX64.dsc` and add our application to the the `[Components]` section and before the `[BuildOptions]` section. Just add the absolute path of `main.inf` file betweem `[Components]` section and the `[BuildOptions]` section.
 3. To build the UEFI application:<br>
 `$ build -a X64 -p DuetPkg/DuetPkgX64.dsc`
 It will take a while to build.
