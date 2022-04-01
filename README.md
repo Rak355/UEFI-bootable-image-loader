@@ -24,17 +24,14 @@ This is a simple UEFI-bootable program which prints an image of specific size on
 ### For Debian based Linux
 `$ sudo apt-get install build-essential uuid-dev iasl git gcc-5 nasm python3-distutils`
 
-## Building the efi application.
-1. Move to the base directory <br>
-`$ cd edk2/`
-and run the edksetup by running following command on the console.<br>
-`$ edksetup.sh BaseTools`
-2. Clone the source of this repository/project to another folder.
-3. Open the file `edk2/DuetPkg/DuetPkgX64.dsc` and add our application to the the `[Components]` section and before the `[BuildOptions]` section.Just add the full path of `main.inf` file betweem `[Components]` section and the `[BuildOptions]` section.
-4. To build the UEFI application:<br>
+## Building the edk2 tree and efi application.
+1. Follow instructions at https://github.com/tianocore/tianocore.github.io/wiki/Getting-Started-with-EDK-II
+and https://github.com/tianocore/tianocore.github.io/wiki/Common-instructions
+2. Open the file `edk2/DuetPkg/DuetPkgX64.dsc` and add our application to the the `[Components]` section and before the `[BuildOptions]` section.Just add the full path of `main.inf` file betweem `[Components]` section and the `[BuildOptions]` section.
+3. To build the UEFI application:<br>
 `$ build -a X64 -p DuetPkg/DuetPkgX64.dsc`
 It will take a while to build.
-5. To create the disk image<br>
+4. To create the disk image<br>
 `$ make set_disk`
   - on the first entry, enter :n, to create a new partition.
   - on the second entry, enter :1, for one partition.
@@ -45,10 +42,10 @@ It will take a while to build.
   - on the seventh entry, enter :Y, to perform the final write operation.
   The disk will be created.
 
-6. To prepare the disk<br>
+5. To prepare the disk<br>
 `$ make prep_disk`
 This will create `/efi/boot` and `/img` directories and also copy the `.efi` application and the image file to the disk.
-7. To run the application on the qemu VM.<br>
+6. To run the application on the qemu VM.<br>
 `$ make run-qemu`.
 
 These are some snapshots of the program.
