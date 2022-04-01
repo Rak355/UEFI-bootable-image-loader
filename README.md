@@ -22,11 +22,11 @@ This is a simple UEFI-bootable program which prints an image of specific size on
 
 ## Building the efi application.
 1. Move to the base directory <br>
-`$ cd /src/edk2/`
+`$ cd edk2/`
 and run the edksetup by running following command on the console.<br>
 `$ edksetup.sh BaseTools`
 2. Clone the source of this repository/project to another folder.
-3. Open the file `/src/edk2/DuetPkg/DuetPkgX64.dsc` and add our application to the the `[Components]` section and before the `[BuildOptions]` section.Just add the full path of `main.inf` file betweem `[Components]` section and the `[BuildOptions]` section.
+3. Open the file `edk2/DuetPkg/DuetPkgX64.dsc` and add our application to the the `[Components]` section and before the `[BuildOptions]` section.Just add the full path of `main.inf` file betweem `[Components]` section and the `[BuildOptions]` section.
 4. To build the UEFI application:<br>
 `$ build -a X64 -p DuetPkg/DuetPkgX64.dsc`
 It will take a while to build.
